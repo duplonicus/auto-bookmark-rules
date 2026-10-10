@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Auto Bookmark Rules</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff; --text: #1c1c22; --muted: #62626e; --border: #d9d9e0;
+    --accent: #4f46e5; --accent-text: #ffffff; --ok: #14733b; --bad: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #212127; --text: #ececf1; --muted: #a0a0ad; --border: #3a3a44;
+      --accent: #8b85ff; --accent-text: #14141a; --ok: #6fd69a; --bad: #ff8a80;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 320px; padding: 12px; background: var(--bg); color: var(--text); font: 13px/1.45 system-ui, sans-serif; }
+  h1 { font-size: 15px; margin: 0 0 10px; }
+  .toggle { display: flex; gap: 6px; align-items: center; cursor: pointer; margin-bottom: 10px; }
+  .box { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; }
+  .muted { color: var(--muted); }
+  ul { margin: 4px 0 0; padding-left: 18px; }
+  li { overflow-wrap: anywhere; }
+  button {
+    font: inherit; width: 100%; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: 600;
+    background: var(--accent); color: var(--accent-text); border: 1px solid var(--accent);
+  }
+  button:disabled { opacity: .45; cursor: default; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #result { margin-top: 8px; min-height: 18px; overflow-wrap: anywhere; }
+  .ok { color: var(--ok); }
+  .bad { color: var(--bad); }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 12px 0 4px; }
+  #activity div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  footer { margin-top: 10px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+  <h1>Auto Bookmark Rules</h1>
+  <label class="toggle"><input type="checkbox" id="paused"> Pause all rules</label>
+  <div class="box" id="matches"></div>
+  <button id="now" disabled>Bookmark this page now</button>
+  <div id="result" role="status"></div>
+  <h2>Recent</h2>
+  <div id="activity" class="muted"></div>
+  <footer><a href="#" id="options">Edit rules</a></footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
